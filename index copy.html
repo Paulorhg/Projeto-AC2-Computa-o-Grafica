@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <title>AC2</title>
+    <title>AC2 Animation</title>
 
     <!-- Babylon.js -->
     <script src="https://code.jquery.com/pep/0.4.2/pep.min.js"></script>
@@ -83,19 +83,19 @@ var light2 = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(0, -0.5, 
 light2.position = new BABYLON.Vector3(0, 5, 5);
 
 // Skybox
-var skybox = BABYLON.MeshBuilder.CreateBox("skyBox", { size: 100.0 }, scene);
-var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
-skyboxMaterial.backFaceCulling = false;
-skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("textures/skybox4", scene);
-skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
-skyboxMaterial.diffuseColor = BABYLON.Color3.Black()
-skyboxMaterial.specularColor = BABYLON.Color3.Black();
-skybox.material = skyboxMaterial;
+// var skybox = BABYLON.MeshBuilder.CreateBox("skyBox", { size: 100.0 }, scene);
+// var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
+// skyboxMaterial.backFaceCulling = false;
+// skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("textures/skybox4", scene);
+// skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
+// skyboxMaterial.diffuseColor = BABYLON.Color3.Black()
+// skyboxMaterial.specularColor = BABYLON.Color3.Black();
+// skybox.material = skyboxMaterial;
 
 // GUI
 var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 var instructions = new BABYLON.GUI.TextBlock();
-instructions.text = "****Move w/ WASD keys, B for Samba**** \n Paulo Ricardo Horta Grando 180173";
+instructions.text = "****Move w/ WASD keys, B for Samb**** \n Paulo Ricardo Horta Grando 180173";
 instructions.color = "white";
 instructions.fontSize = 16;
 instructions.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT
@@ -106,7 +106,7 @@ advancedTexture.addControl(instructions);
 //HighMap
 
    const largeGroundMaterial = new BABYLON.StandardMaterial("largeGroundMaterial");
-   largeGroundMaterial.diffuseTexture = new BABYLON.Texture("textures/wood.jpg");
+   largeGroundMaterial.diffuseTexture = new BABYLON.Texture("textures/neve.jpg");
 
     
    const largeGround = BABYLON.MeshBuilder.CreateGroundFromHeightMap("largeGround", "textures/map_circ.png", {width:150, height:150, subdivisions: 20, minHeight:0, maxHeight: 10});
@@ -148,7 +148,7 @@ BABYLON.SceneLoader.ImportMesh("", "https://assets.babylonjs.com/meshes/", "HVGi
 
     //Hero character variables 
     var heroSpeed = 0.3;
-    var heroSpeedBackwards = 0.01;
+    var heroSpeedBackwards = 0.1;
     var heroRotationSpeed = 0.1;
 
     var animating = true;
@@ -171,15 +171,12 @@ BABYLON.SceneLoader.ImportMesh("", "https://assets.babylonjs.com/meshes/", "HVGi
 
             if(hero.intersectsMesh(aux_box,true))
             {
-                //barrel.remove();
-                
-                //  aux_box.material.emisseveColor = new BABYLON.Color3(1,0,0);
+                Particles();
             }
-            // else
+            // }else
             // {
             //     aux_box.material.emisseveColor = new BABYLON.Color3(0,0,0);
-            // }
-
+            // }            
         }
         if (inputMap["s"]) {
             hero.moveWithCollisions(hero.forward.scaleInPlace(-heroSpeedBackwards));
@@ -240,16 +237,16 @@ a = 5*1;
 b = 0;
 c = 5*1.4;
 
-B1 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 1, 1,3, 10);
-B2 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 1, 1,0, 10);
-B3 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 1, 1,0, 10);
-B4 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 1, 1,0, 10);
-B5 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 1, 1,0, 10);
-B6 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 1, 1,0, 10);
-B7 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 1, 1,0, 10);
-B8 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 1, 1,0, 10);
-B9 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 1, 1,0, 10);
-B10 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 1, 1,0, 10);
+// B1 = new Box("box1",a,b,0.2);
+// B2 = new Box("box2",b,a,0.4);
+// B3 = new Box("box3",-a,b,0.6);
+// B4 = new Box("box4",b,-a,0.8);
+// B5 = new Box("box5",c,c,1);
+// B6 = new Box("box6",-c,c,1.2);
+// B7 = new Box("box7",c,-c,1.4);
+// B8 = new Box("box8",-c,-c,1.6);
+// B9 = new Box("box9",a/2,c,1.8);
+// B10 = new Box("box10",-a/2,-c,2);
 
 
 //Meshes
@@ -263,16 +260,16 @@ B10 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.gl
 // O6 = new Meshes("https://models.babylonjs.com/","ufo.glb", 4, 4,0, 10);
 
 //Criar Barril
-barrel = new Barrel("https://models.babylonjs.com/","ExplodingBarrel.glb", 4, 4,0, 0.025);
 
-var toExplodeArray = [];
-toExplodeArray.push(barrel);
+barrel = new Barrel("https://models.babylonjs.com/","ExplodingBarrel.glb", -4, -4,0, 0.025);
 
+    var toExplodeArray = [];
+    toExplodeArray.push(barrel);
 
-aux_box = BABYLON.MeshBuilder.CreateBox("box_aux",{height: 3, width: 2, depth: 2}, scene);
-aux_box.position.x = 4;
-aux_box.position.y = 1.5;
-aux_box.position.z = 4;
+aux_box = BABYLON.MeshBuilder.CreateBox("box_aux",{height: 5, width: 2, depth: 2}, scene);
+aux_box.position.x = -4;
+aux_box.position.y = 0;
+aux_box.position.z = -4;
 aux_box.visibility = 0;
 
 
@@ -280,6 +277,53 @@ aux_box.visibility = 0;
 
 return scene;
 }
+
+    function Particles(){
+        var particleSystem = new BABYLON.ParticleSystem("particles", 5000, scene);
+        particleSystem.createHemisphericEmitter(1.2);
+        //Texture of each particle
+        particleSystem.particleTexture = new BABYLON.Texture("textures/flare.png", scene);
+
+        // Where the particles come from
+        particleSystem.emitter = new BABYLON.Vector3(-4, 0, -4); // the starting object, the emitter
+        particleSystem.minEmitBox = new BABYLON.Vector3(-1, 0, 0); // Starting all from
+        particleSystem.maxEmitBox = new BABYLON.Vector3(1, 0, 0); // To...
+
+        // Colors of all particles
+        particleSystem.color1 = new BABYLON.Color4(1, 0.84, 0.7);
+        particleSystem.color2 = new BABYLON.Color4(1, 0.2, 0.2);
+        particleSystem.colorDead = new BABYLON.Color4(0, 0, 0.2, 0.0);
+
+        // Size of each particle (random between...
+        particleSystem.minSize = 0.05;
+        particleSystem.maxSize = 0.07;
+
+        // Life time of each particle (random between...
+        particleSystem.minLifeTime = 2;
+        particleSystem.maxLifeTime = 3.5;
+
+        // Emission rate
+        particleSystem.emitRate = 500;
+
+        // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
+        particleSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+
+        // Set the gravity of all particles
+        // particleSystem.gravity = new BABYLON.Vector3(0, -9.81, 0);
+
+        // Angular speed, in radians
+        particleSystem.minAngularSpeed = 0;
+        particleSystem.maxAngularSpeed = Math.PI;
+
+        // Speed
+        particleSystem.minEmitPower = 4;
+        particleSystem.maxEmitPower = 7;
+        particleSystem.updateSpeed = 0.025;
+
+        particleSystem.start(); 
+
+        particleSystem.targetStopDuration = 0.3;
+    }
 
     class Meshes
     {
@@ -304,33 +348,34 @@ return scene;
         constructor(url, objName, x,z,y,scale)
         {
             BABYLON.SceneLoader.ImportMeshAsync("", url, objName).then((result) => {
-            let meshes = result.meshes[0]; 
-                  
-            meshes.position.x = x;
-            meshes.position.z = z;
-            meshes.position.y = y;
-            meshes.scaling = new BABYLON.Vector3(scale,scale,scale);
-        
+                let meshes = result.meshes[0]; 
+                    
+                meshes.position.x = x;
+                meshes.position.z = z;
+                meshes.position.y = y;
+                meshes.scaling = new BABYLON.Vector3(scale,scale,scale);
 
-        });
+                
+            });
+        }
 
+        Remove()
+        {
+            
+        }
 
+        Explosion(toExplodeArray)
+        {
+            var newExplosion = new BABYLON.MeshExploder(toExplodeArray,this);
+            newExplosion.explode();
+        }
+
+        Teste(){
+            // this.position.y = 10;
+            new Box("box1",a,b,0.2);
+
+        }
     }
-
-    Remove()
-    {
-        this.dispose();
-    }
-
-    Explosion(toExplodeArray)
-    {
-        var newExplosion = new BABYLON.MeshExploder(toExplodeArray,this);
-        newExplosion.explode();
-    }
-
-    }
-
-
 
     class Box 
     {
