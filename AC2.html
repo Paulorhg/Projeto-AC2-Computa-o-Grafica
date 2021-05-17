@@ -240,27 +240,26 @@ a = 5*1;
 b = 0;
 c = 5*1.4;
 
-B1 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 1, 1,3, 10);
-B2 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 1, 1,0, 10);
-B3 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 1, 1,0, 10);
-B4 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 1, 1,0, 10);
-B5 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 1, 1,0, 10);
-B6 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 1, 1,0, 10);
-B7 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 1, 1,0, 10);
-B8 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 1, 1,0, 10);
-B9 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 1, 1,0, 10);
-B10 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 1, 1,0, 10);
+p1 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 5, 0,0, 1);
+p2 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 5, 5,0, 2);
+p2 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 5, 5,0, 3);
+p4 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 15, 10,0, 4);
+p5 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 2, 10,0, 5);
+p6 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 2, 10,0, 6);
+p7 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 12, -5,0, 7);
+p8 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", -12, -5,0, 8);
+p9 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", -5, -7,0, 9);
+p10 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", -15, 10,0, 10);
 
 
 //Meshes
 
-
-// O1 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 1, 1,0, 10);
-// O2 = new Meshes("https://models.babylonjs.com/","toast_acrobatics.glb", 1,1,0, 5);
-// O3 = new Meshes("https://models.babylonjs.com/","seagulf.glb", 3, 3,1, 0.001);
-// O4 = new Meshes("https://models.babylonjs.com/","emoji_heart.glb", 1, 1,0, 10);
-// O5 = new Meshes("https://models.babylonjs.com/","aerobatic_plane.glb", 1, 1,0, 10);
-// O6 = new Meshes("https://models.babylonjs.com/","ufo.glb", 4, 4,0, 10);
+O1 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 1, 1,0, 10);
+O2 = new Meshes("https://models.babylonjs.com/","toast_acrobatics.glb", 1,1,0, 5);
+O3 = new Meshes("https://models.babylonjs.com/","seagulf.glb", 3, 3,1, 0.001);
+O4 = new Meshes("https://models.babylonjs.com/","emoji_heart.glb", -10, 1,0, 10);
+O5 = new Meshes("https://models.babylonjs.com/","aerobatic_plane.glb", 20, 1,10, 5);
+O6 = new Meshes("https://models.babylonjs.com/","ufo.glb", 14, 14,5, 5);
 
 //Criar Barril
 barrel = new Barrel("https://models.babylonjs.com/","ExplodingBarrel.glb", 4, 4,0, 0.025);
@@ -281,6 +280,53 @@ aux_box.visibility = 0;
 return scene;
 }
 
+    function Particles(){
+        var particleSystem = new BABYLON.ParticleSystem("particles", 5000, scene);
+        particleSystem.createHemisphericEmitter(1.2);
+        //Texture of each particle
+        particleSystem.particleTexture = new BABYLON.Texture("textures/flare.png", scene);
+
+        // Where the particles come from
+        particleSystem.emitter = new BABYLON.Vector3(-4, 0, -4); // the starting object, the emitter
+        particleSystem.minEmitBox = new BABYLON.Vector3(-1, 0, 0); // Starting all from
+        particleSystem.maxEmitBox = new BABYLON.Vector3(1, 0, 0); // To...
+
+        // Colors of all particles
+        particleSystem.color1 = new BABYLON.Color4(1, 0.84, 0.7);
+        particleSystem.color2 = new BABYLON.Color4(1, 0.2, 0.2);
+        particleSystem.colorDead = new BABYLON.Color4(0, 0, 0.2, 0.0);
+
+        // Size of each particle (random between...
+        particleSystem.minSize = 0.05;
+        particleSystem.maxSize = 0.07;
+
+        // Life time of each particle (random between...
+        particleSystem.minLifeTime = 2;
+        particleSystem.maxLifeTime = 3.5;
+
+        // Emission rate
+        particleSystem.emitRate = 500;
+
+        // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
+        particleSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+
+        // Set the gravity of all particles
+        // particleSystem.gravity = new BABYLON.Vector3(0, -9.81, 0);
+
+        // Angular speed, in radians
+        particleSystem.minAngularSpeed = 0;
+        particleSystem.maxAngularSpeed = Math.PI;
+
+        // Speed
+        particleSystem.minEmitPower = 4;
+        particleSystem.maxEmitPower = 7;
+        particleSystem.updateSpeed = 0.025;
+
+        particleSystem.start(); 
+
+        particleSystem.targetStopDuration = 0.3;
+    }
+
     class Meshes
     {
         constructor(url, objName, x,z,y,scale)
@@ -294,8 +340,8 @@ return scene;
             meshes.scaling = new BABYLON.Vector3(scale,scale,scale);
            // meshes.checkCollision = true;
 
-        });
-    }
+            });
+        }
 
     }
 
@@ -310,47 +356,41 @@ return scene;
             meshes.position.z = z;
             meshes.position.y = y;
             meshes.scaling = new BABYLON.Vector3(scale,scale,scale);
-        
+            });
+        }
 
-        });
-
-
-    }
-
-    Remove()
-    {
-        this.dispose();
-    }
-
-    Explosion(toExplodeArray)
-    {
-        var newExplosion = new BABYLON.MeshExploder(toExplodeArray,this);
-        newExplosion.explode();
-    }
-
-    }
-
-
-
-    class Box 
-    {
-        
-        constructor(boxName, x,z, d)
+        Remove()
         {
-            this.box = BABYLON.MeshBuilder.CreateBox(boxName,{height: d, width: d, depth: d}, scene);
-            this.box.position.x = x;
-            this.box.position.y = d/2;
-            this.box.position.z = z;
+            this.dispose();
+        }
 
-            var boxMaterial = new BABYLON.StandardMaterial("boxMaterial", scene);
-            boxMaterial.diffuseTexture = new BABYLON.Texture("textures/crate.png", scene);
-
-            this.box.material = boxMaterial;
-            this.box.checkCollisions = true;
-
+        Explosion(toExplodeArray)
+        {
+            var newExplosion = new BABYLON.MeshExploder(toExplodeArray,this);
+            newExplosion.explode();
         }
 
     }
+
+
+
+    // class Box 
+    // {
+    //     constructor(boxName, x,z, d)
+    //     {
+    //         this.box = BABYLON.MeshBuilder.CreateBox(boxName,{height: d, width: d, depth: d}, scene);
+    //         this.box.position.x = x;
+    //         this.box.position.y = d/2;
+    //         this.box.position.z = z;
+
+    //         var boxMaterial = new BABYLON.StandardMaterial("boxMaterial", scene);
+    //         boxMaterial.diffuseTexture = new BABYLON.Texture("textures/crate.png", scene);
+
+    //         this.box.material = boxMaterial;
+    //         this.box.checkCollisions = true;
+
+    //     }
+    // }
 
 
 
