@@ -169,15 +169,13 @@ BABYLON.SceneLoader.ImportMesh("", "https://assets.babylonjs.com/meshes/", "HVGi
             hero.moveWithCollisions(hero.forward.scaleInPlace(heroSpeed));
             keydown = true;
 
-            if(hero.intersectsMesh(aux_box,true))
+            if(hero.intersectsMesh(barrel_box,true))
             {
-                //barrel.remove();
-                
-                //  aux_box.material.emisseveColor = new BABYLON.Color3(1,0,0);
+                Particles();
             }
             // else
             // {
-            //     aux_box.material.emisseveColor = new BABYLON.Color3(0,0,0);
+            //     barrel_box.material.emisseveColor = new BABYLON.Color3(0,0,0);
             // }
 
         }
@@ -236,10 +234,6 @@ BABYLON.SceneLoader.ImportMesh("", "https://assets.babylonjs.com/meshes/", "HVGi
 
 //criar os objetos 
 
-a = 5*1;
-b = 0;
-c = 5*1.4;
-
 p1 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 5, 0,0, 1);
 p2 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 5, 5,0, 2);
 p2 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 5, 5,0, 3);
@@ -254,25 +248,21 @@ p10 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.gl
 
 //Meshes
 
-O1 = new Meshes("https://models.babylonjs.com/Georgia-Tech-Dragon/", "dragon.glb", 1, 1,0, 10);
-O2 = new Meshes("https://models.babylonjs.com/","toast_acrobatics.glb", 1,1,0, 5);
-O3 = new Meshes("https://models.babylonjs.com/","seagulf.glb", 3, 3,1, 0.001);
-O4 = new Meshes("https://models.babylonjs.com/","emoji_heart.glb", -10, 1,0, 10);
-O5 = new Meshes("https://models.babylonjs.com/","aerobatic_plane.glb", 20, 1,10, 5);
-O6 = new Meshes("https://models.babylonjs.com/","ufo.glb", 14, 14,5, 5);
+obj1 = new Meshes("https://models.babylonjs.com/skull/", "skull.babylon", 1, 1,0, 10);
+obj2 = new Meshes("https://models.babylonjs.com/","toast_acrobatics.glb", 1,1,0, 5);
+obj3 = new Meshes("https://models.babylonjs.com/","seagulf.glb", 3, 3,1, 0.001);
+obj4 = new Meshes("https://models.babylonjs.com/","emoji_heart.glb", -10, 1,0, 10);
+obj5 = new Meshes("https://models.babylonjs.com/","aerobatic_plane.glb", 20, 1,10, 5);
+obj6 = new Meshes("https://models.babylonjs.com/","ufo.glb", 14, 14,5, 5);
 
 //Criar Barril
 barrel = new Barrel("https://models.babylonjs.com/","ExplodingBarrel.glb", 4, 4,0, 0.025);
 
-var toExplodeArray = [];
-toExplodeArray.push(barrel);
-
-
-aux_box = BABYLON.MeshBuilder.CreateBox("box_aux",{height: 3, width: 2, depth: 2}, scene);
-aux_box.position.x = 4;
-aux_box.position.y = 1.5;
-aux_box.position.z = 4;
-aux_box.visibility = 0;
+barrel_box = BABYLON.MeshBuilder.CreateBox("box_barrel",{height: 3, width: 2, depth: 2}, scene);
+barrel_box.position.x = 4;
+barrel_box.position.y = 1.5;
+barrel_box.position.z = 4;
+barrel_box.visibility = 0;
 
 
 
@@ -287,7 +277,7 @@ return scene;
         particleSystem.particleTexture = new BABYLON.Texture("textures/flare.png", scene);
 
         // Where the particles come from
-        particleSystem.emitter = new BABYLON.Vector3(-4, 0, -4); // the starting object, the emitter
+        particleSystem.emitter = new BABYLON.Vector3(4, 0, 4); // the starting object, the emitter
         particleSystem.minEmitBox = new BABYLON.Vector3(-1, 0, 0); // Starting all from
         particleSystem.maxEmitBox = new BABYLON.Vector3(1, 0, 0); // To...
 
@@ -361,7 +351,6 @@ return scene;
 
         Remove()
         {
-            this.dispose();
         }
 
         Explosion(toExplodeArray)
